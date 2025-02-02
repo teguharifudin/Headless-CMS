@@ -44,7 +44,8 @@ class TeamMemberControllerTest extends TestCase
             'bio' => $this->faker->paragraph,
             'order' => $this->faker->numberBetween(1, 10),
             'is_active' => true,
-            'profile_picture' => $imageFile
+            'profile_picture' => $imageFile,
+            'created_by' => $this->user->id
         ];
 
         $response = $this->withHeaders([
@@ -65,6 +66,7 @@ class TeamMemberControllerTest extends TestCase
                     'order',
                     'is_active',
                     'profile_picture',
+                    'created_by',
                     'created_at',
                     'updated_at'
                 ]
@@ -90,7 +92,8 @@ class TeamMemberControllerTest extends TestCase
             'bio' => $this->faker->paragraph,
             'order' => $this->faker->numberBetween(1, 10),
             'is_active' => true,
-            'profile_picture' => $path1
+            'profile_picture' => $path1,
+            'created_by' => $this->user->id
         ]);
 
         $imageFile2 = UploadedFile::fake()->image('profile2.jpg', 400, 400);
@@ -102,7 +105,8 @@ class TeamMemberControllerTest extends TestCase
             'bio' => $this->faker->paragraph,
             'order' => $this->faker->numberBetween(1, 10),
             'is_active' => true,
-            'profile_picture' => $path2
+            'profile_picture' => $path2,
+            'created_by' => $this->user->id
         ]);
 
         $response = $this->withHeaders([
@@ -122,6 +126,7 @@ class TeamMemberControllerTest extends TestCase
                         'order',
                         'is_active',
                         'profile_picture',
+                        'created_by',
                         'created_at',
                         'updated_at'
                     ]
@@ -162,7 +167,8 @@ class TeamMemberControllerTest extends TestCase
             'bio' => $this->faker->paragraph,
             'order' => $this->faker->numberBetween(1, 10),
             'is_active' => true,
-            'profile_picture' => null
+            'profile_picture' => null,
+            'created_by' => $this->user->id
         ];
 
         $data = TeamMember::create($teamMember);
@@ -190,6 +196,7 @@ class TeamMemberControllerTest extends TestCase
                     'order',
                     'is_active',
                     'profile_picture',
+                    'created_by',
                     'created_at',
                     'updated_at'
                 ]
@@ -222,7 +229,8 @@ class TeamMemberControllerTest extends TestCase
             'bio' => $this->faker->paragraph,
             'order' => $this->faker->numberBetween(1, 10),
             'is_active' => true,
-            'profile_picture' => $imageFile
+            'profile_picture' => $imageFile,
+            'created_by' => $this->user->id
         ];
 
         $data = TeamMember::create($teamMember);
