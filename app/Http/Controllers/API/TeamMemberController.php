@@ -15,8 +15,8 @@ class TeamMemberController extends Controller
     public function index()
     {
         try {
-            $teamMembers = TeamMember::query()
-                ->select(['id', 'name', 'role', 'email', 'bio', 'profile_picture', 'order', 'is_active', 'created_at', 'updated_at'])
+            $teamMembers = TeamMember::with(['createdBy'])
+                ->select(['id', 'name', 'role', 'email', 'bio', 'profile_picture', 'order', 'is_active', 'created_by', 'created_at', 'updated_at'])
                 ->orderBy('order')
                 ->get();
 
@@ -95,6 +95,7 @@ class TeamMemberController extends Controller
 
             $validated['order'] = $validated['order'] ?? 0;
             $validated['is_active'] = $validated['is_active'] ?? true;
+            $validated['created_by'] = auth()->id();
 
             $teamMember = TeamMember::create($validated);
 
@@ -137,8 +138,8 @@ class TeamMemberController extends Controller
     public function show($id)
     {
         try {
-            $teamMember = TeamMember::query()
-                ->select(['id', 'name', 'role', 'email', 'bio', 'profile_picture', 'order', 'is_active', 'created_at', 'updated_at'])
+            $teamMember = TeamMember::with(['createdBy'])
+                ->select(['id', 'name', 'role', 'email', 'bio', 'profile_picture', 'order', 'is_active', 'created_by', 'created_at', 'updated_at'])
                 ->findOrFail($id);
 
             if ($teamMember->profile_picture) {
