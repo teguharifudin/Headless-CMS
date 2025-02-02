@@ -13,7 +13,8 @@ class TeamMember extends Model
         'profile_picture',
         'email',
         'order',
-        'is_active'
+        'is_active',
+        'created_by'
     ];    
 
     protected $casts = [
