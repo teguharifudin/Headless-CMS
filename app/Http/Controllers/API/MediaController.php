@@ -14,7 +14,7 @@ class MediaController extends Controller
     public function index(Request $request)
     {
         try {
-            $query = Media::query();
+            $query = Media::with(['uploader']);
             
             if ($request->has('type')) {
                 $query->where('type', $request->type);
@@ -142,7 +142,8 @@ class MediaController extends Controller
     {
         try {
             $media = Cache::remember("media_{$id}", now()->addHour(), function () use ($id) {
-                $media = Media::findOrFail($id);
+                $media = Media::with(['uploader'])
+                    ->findOrFail($id);
                 $media->url = Storage::disk($media->disk)->url($media->path);
                 return $media;
             });
