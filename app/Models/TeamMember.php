@@ -21,4 +21,9 @@ class TeamMember extends Model
         'is_active' => 'boolean',
         'order' => 'integer'
     ];
+
+    public function createdBy()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
 }
