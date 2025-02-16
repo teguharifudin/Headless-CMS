@@ -9,7 +9,7 @@ a headless CMS is a back-end-only content management system that provides a way 
 Install the app on terminal
 
 ```
-git clone git@github.com:teguharifudin/Headless-CMS.git
+git clone https://github.com/teguharifudin/Headless-CMS.git
 ```
 ```
 cd Headless-CMS
